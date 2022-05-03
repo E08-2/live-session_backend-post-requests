@@ -22,6 +22,7 @@
 */
 
 import express from "express";
+import cors from "cors";
 
 const app = express();
 
@@ -33,6 +34,13 @@ const app = express();
 
 // ? 1. Our POST request goes through this middleware!
 app.use(express.json());
+
+// ! Solve the Cross-Origin Resource Sharing issue
+// We want to allow our client to access resources on the server
+// Even though the client (port 3001) and the server (port 3000) have different origins!
+// Using the CORS module in this way tells the browser:
+// ? "Don't worry about CORS any more - you can access my resources!"
+app.use(cors());
 
 // An array to contain all the objects received from clients during the current process
 const data = [];
